@@ -19,7 +19,11 @@ class TestBooksCollector:
     def test_set_book_genre_valid(self, collector):
         collector.add_new_book('Дюна')
         collector.set_book_genre('Дюна', 'Фантастика')
-        assert collector.books_genre('Дюна') == 'Фантастика'
+        assert collector.books_genre['Дюна'] == 'Фантастика'
+
+    def test_get_book_genre_existing_book_genre(self, collector):
+        collector.books_genre['Дюна'] = 'Фантастика'
+        assert collector.get_book_genre('Дюна') == 'Фантастика'
 
     def test_get_books_genre_returns_dict(self, collector):
         collector.add_new_book('Дюна')
