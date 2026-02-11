@@ -42,12 +42,13 @@ class TestBooksCollector:
         assert collector.get_book_genre('Дюна') == ''
 
     def test_get_books_for_children_excludes_age_rated_genres(self, collector):
-        collector.add_new_book("Страшная книга")
-        collector.add_new_book("Детективная история")
-        collector.set_book_genre("Страшная книга", "Ужасы")
-        collector.set_book_genre("Детективная история", "Детективы")
-        books_for_children = collector.get_books_for_children()
-        assert "Страшная книга" and "Детективная история" not in books_for_children
+        collector.books_genre = {
+            'Русалочка': 'Мультфильмы',
+            'Страшная книга': 'Ужасы',
+            'Детективная история': 'Детективы',
+            'Дюна': 'Фантастика'
+        }
+        assert collector.get_books_for_children() == ['Русалочка', 'Дюна']
 
     def test_books_collector_add_book_in_favorites(self, collector):
         collector.add_new_book('Дюна')
