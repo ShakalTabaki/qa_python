@@ -3,10 +3,6 @@ from main import BooksCollector
 
 class TestBooksCollector:
 
-    @pytest.fixture
-    def collector(self):
-        return BooksCollector()
-
     def test_add_new_book_add_two_books(self, collector):
         collector.add_new_book('Гордость и предубеждение и зомби')
         collector.add_new_book('Что делать, если ваш кот хочет вас убить')
@@ -23,7 +19,7 @@ class TestBooksCollector:
     def test_set_book_genre_valid(self, collector):
         collector.add_new_book('Дюна')
         collector.set_book_genre('Дюна', 'Фантастика')
-        assert collector.get_book_genre('Дюна') == 'Фантастика'
+        assert collector.books_genre('Дюна') == 'Фантастика'
 
     def test_get_books_genre_returns_dict(self, collector):
         collector.add_new_book('Дюна')
