@@ -53,10 +53,14 @@ class TestBooksCollector:
     def test_books_collector_add_book_in_favorites(self, collector):
         collector.add_new_book('Дюна')
         collector.add_book_in_favorites('Дюна')
-        assert 'Дюна' in collector.get_list_of_favorites_books()
+        assert 'Дюна' in collector.favorites
 
     def test_delete_book_from_favorites_existing_book_removes_successfully(self, collector):
         collector.add_new_book('Дюна')
         collector.add_book_in_favorites('Дюна')
         collector.delete_book_from_favorites('Дюна')
         assert collector.get_list_of_favorites_books() == []
+
+    def test_get_list_of_favorites_books(self, collector):
+        collector.favorites = ['Дюна', 'Русалочка']
+        assert collector.get_list_of_favorites_books() == ['Дюна', 'Русалочка']
